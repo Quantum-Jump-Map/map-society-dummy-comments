@@ -47,6 +47,7 @@ async function add_dummy_data()
 
         const res_token = res.data.token;
         const token_header = "Bearer " + res_token;
+        let count =0;
 
         for(const j of dummyComments.data)
         {
@@ -66,6 +67,8 @@ async function add_dummy_data()
                     data: comment_data
                 });
 
+                count++;
+
                 if(!comment_res.data || comment_res.data.message !== "댓글 저장 완료")
                 {
                     console.log("error: 댓글 저장 실패");
@@ -74,6 +77,9 @@ async function add_dummy_data()
                 console.log(err);
             }
         }
+
+        console.log("total comments: "+dummyComments.data.length);
+        console.log("fetched comments: "+count);
         
     }catch(err){
         console.log(err);
